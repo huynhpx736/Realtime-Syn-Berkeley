@@ -24,8 +24,9 @@ def get_ip_server():
         s.close()
     return IP
 
+#There are 2 protocol TCP/UDP, when connecting, just use 1
 def startReceivingClockTimeTCP(connector, address):
-    print("Vo TCPPPPPPPPPP")
+    # print("Vo TCPPPPPPPPPP")
     while not stop_flag:
         try:
             # Receive clock time
@@ -49,7 +50,7 @@ def startReceivingClockTimeTCP(connector, address):
 
 
 def startReceivingClockTimeUDP(master_server):
-    print("vo UDPPPPPPPPPPPPPPP")
+    # print("vo UDPPPPPPPPPPPPPPP")
     while not stop_flag:
         try:
             # Receive clock time and client address from UDP
@@ -73,36 +74,6 @@ def startReceivingClockTimeUDP(master_server):
         except Exception as e:
             print("Error receiving clock time from " + slave_address + ": " + str(e))
             client_data.pop(slave_address)
-
-# def startReceivingClockTime(connector, address, connection_type):
-#     global stop_flag
-#     while not stop_flag:
-#         try:
-#             # Receive clock time
-#             if connection_type == "TCP":
-#                 clock_time_string = connector.recv(1024).decode()
-#                 clock_time = parser.parse(clock_time_string)
-#                 clock_time_diff =  clock_time - datetime.datetime.now()
-            
-#             elif connection_type == "UDP":
-#                 data, addr = connector.recvfrom(1024)
-#                 clock_time_string = data.decode()
-#                 clock_time = parser.parse(clock_time_string)
-#                 clock_time_diff = clock_time - datetime.datetime.now()
-#                 address = str(addr[0]) + ":" + str(addr[1])
-#             client_data[address] = {
-#                 "clock_time": clock_time,
-#                 "time_difference": clock_time_diff,
-#                 "connector": connector
-#             }
-
-#             print("Client Data updated with: " + str(address), end="\n\n")
-            
-#             time.sleep(5)
-#         except Exception as e:
-#             print("Error receiving clock time from " + str(address) + ": " + str(e))
-#             if connection_type=="UDP":
-#                 client_data.pop(address)
 
 def startConnecting(master_server, connection_type):
     global stop_flag
