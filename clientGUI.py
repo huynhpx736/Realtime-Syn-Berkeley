@@ -111,7 +111,7 @@ def timenow():
     lbl.after(1000, timenow)
 
 
-# Tạo cửa sổ chính
+# main window
 root = tk.Tk()
 frm = ttk.Frame(root)
 root.geometry("500x400")
@@ -139,14 +139,14 @@ client_port_entry.place(x=240, y=110)
 connection_type_label = tk.Label(root, text="Connection Type:", bg="#E5E8E8")
 connection_type_label.place(x=120, y=150)
 
-# Sử dụng Radiobutton
+# connection type
 connection_type_var = tk.StringVar(value="TCP")
 tcp_button = tk.Radiobutton(root, text="TCP", variable=connection_type_var, value="TCP")
 tcp_button.place(x=240, y=150)
 udp_button = tk.Radiobutton(root, text="UDP", variable=connection_type_var, value="UDP")
 udp_button.place(x=240, y=170)
 
-# Nút bắt đầu kết nối
+# Start connect button
 start_button = tk.Button(root, text="Start Connect", background="#FA8072", command=start)
 start_button.place(x=120, y=210)
 
